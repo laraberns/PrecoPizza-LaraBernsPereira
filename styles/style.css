@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lobster Two', sans-serif;
+    font-size: 20px;
+    background-color: #FAFAFA;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+}
+
+.button-submit {
+    width: 150px;
+    align-self: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.title-page {
+    font-size: 40px;
+}
+
+.pizza-img {
+    width: 100px;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+.form-text{
+   margin-bottom: 20px;
+}
