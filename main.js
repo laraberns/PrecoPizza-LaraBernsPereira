@@ -6,6 +6,13 @@ const bodyTable = document.getElementById('idBodyTable')
 const buttonResults = document.getElementById('idButtonResults')
 const buttonClear = document.getElementById('idButtonClear')
 var table = document.querySelector('.table')
+var selectShape = document.getElementById('idSelectShape')
+const circle = document.getElementById('idCircle')
+const square = document.getElementById('idSquare')
+const rectangle = document.getElementById('idRectangle')
+const sizeHelp = document.getElementById('idSizeHelp')
+var divWidth = document.querySelector(".div-width")
+const width = document.getElementById('idSizeWidth')
 
 var arrayName = []
 var arraySize = []
@@ -14,6 +21,7 @@ var arrayUSCM = []
 var matrix = []
 var index = 0
 var arrayDiff = ["Best CB"]
+var arraySizeForTable = []
 
 // button submit and check if size has not been sent
 function preventDefault(event) {
@@ -22,12 +30,31 @@ function preventDefault(event) {
 }
 
 // check if size has already been submited
-function checkSize(){
-    if(arraySize.includes(Number(size.value)) == false){
-        saveArray()
-        clearfields()
-    }else{
-        alert("The Pizza Size provided has already been submited! Type another size please.")
+function checkSize() {
+
+    if (circle.selected) {
+        if (arraySizeForTable.includes((size.value)) == false) {
+            saveArray()
+            clearfields()
+        } else {
+            alert("The Pizza Size provided has already been submited! Type another diameter please.")
+        }
+    } else {
+        if (square.selected) {
+            if (arraySizeForTable.includes(((size.value + "x" + size.value))) == false) {
+                saveArray()
+                clearfields()
+            } else {
+                alert("The Pizza Size provided has already been submited! Type another side please.")
+            }
+        } else {
+            if (arraySizeForTable.includes(((size.value + "x" + width.value))) == false) {
+                saveArray()
+                clearfields()
+            } else {
+                alert("The Pizza Size provided has already been submited! Type another height/width please.")
+            }
+        }
     }
 }
 
@@ -40,14 +67,29 @@ function clearfields() {
 
 // save each input in a specif array and push all infos into matrix array
 function saveArray() {
-    let UsCm = (Number(price.value) / (Math.PI * ((Number(size.value) / 2) * (Number(size.value) / 2)))).toFixed(2)
+
+    let USCM = 0
+
+    if (circle.selected) {
+        USCM = (Number(price.value) / (Math.PI * ((Number(size.value) / 2) * (Number(size.value) / 2)))).toFixed(2)
+        arraySizeForTable.push(size.value)
+    } else {
+        if (square.selected) {
+            USCM = (Number(Number(price.value) / (Number(size.value) * Number(size.value)))).toFixed(2)
+            arraySizeForTable.push(size.value + "x" + size.value)
+        } else {
+            USCM = (Number(Number(price.value) / (Number(size.value) * Number(width.value)))).toFixed(2)
+            arraySizeForTable.push(size.value + "x" + width.value)
+        }
+    }
 
     arrayName.push(namePizza.value)
     arraySize.push(Number(size.value))
     arrayPrice.push(Number(price.value))
-    arrayUSCM.push(Number(UsCm))
+    arrayUSCM.push(Number(USCM))
 
-    matrix.push([arrayName[index], arraySize[index], arrayPrice[index], arrayUSCM[index]])
+
+    matrix.push([arrayName[index], arraySize[index], arrayPrice[index], arrayUSCM[index], arraySizeForTable[index]])
 
     index++
 
@@ -92,11 +134,12 @@ function calculateDiff() {
     }
 
     for (let index = 0; index < arrayName.length; index++) {
+
         table.innerHTML += `
         <tbody>
             <tr>
                 <td scope="col">${matrix[index][0]}</td>
-                <td scope="col">${matrix[index][1]}</td>
+                <td scope="col">${matrix[index][4]}</td>
                 <td scope="col">${matrix[index][2]}</td>
                 <td scope="col">${matrix[index][3]}</td>
                 <td scope="col">${arrayDiff[index]}</td>
@@ -111,4 +154,23 @@ buttonClear.addEventListener("click", realoadWindow)
 
 function realoadWindow() {
     location.reload();
+}
+
+selectShape.addEventListener("change", shapeSelected)
+
+// checking which shape is selected
+function shapeSelected() {
+    if (square.selected) {
+        sizeHelp.innerText = "side in centimeters"
+        divWidth.style.display = "none"
+    } else {
+        if (circle.selected) {
+            sizeHelp.innerText = "diameter in centimeters"
+            divWidth.style.display = "none"
+        } else {
+            sizeHelp.innerText = "height in centimeters"
+            divWidth.style.display = "block"
+        }
+    }
+
 }

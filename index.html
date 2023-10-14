@@ -28,9 +28,23 @@
                 <div id="idNameHelp" class="form-text">small, medium, large, extra-large, etc.</div>
             </div>
             <div class="form-floating">
+                <select class="form-select" id="idSelectShape" required>
+                  <option value="circle" id="idCircle">Circle</option>
+                  <option value="square" id="idSquare">Square</option>
+                  <option value="rectangle" id="idRectangle">Rectangle</option>
+                </select>
+                <label for="idSelectShape">Pizza Shape</label>
+                <div id="idShapeHelp" class="form-text">circle, square or rectangle</div>
+              </div>
+            <div class="form-floating">
                 <input type="number" class="form-control" id="idSize" placeholder="Pizza Size" min="0" required>
                 <label for="idSize">Pizza Size</label>
                 <div id="idSizeHelp" class="form-text">diameter in centimeters</div>
+            </div>
+            <div class="form-floating div-width">
+                <input type="number" class="form-control" id="idSizeWidth" placeholder="Pizza Size" min="0">
+                <label for="idSizeWidth">Pizza Size</label>
+                <div id="idSizeHelp" class="form-text">width in centimeters</div>
             </div>
             <div class="form-floating">
                 <input type="number" class="form-control" id="idPrice" placeholder="Price" step="0.01" min="0" required>
