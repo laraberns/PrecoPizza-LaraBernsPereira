@@ -108,19 +108,24 @@ function sortMatrix() {
 buttonResults.addEventListener("click", showResults)
 
 function showResults() {
-    table.innerHTML = `
-    <thead>
-        <tr class="fw-bold">
-            <th scope="col">Name</th>
-            <th scope="col">Pizza Size (cm)</th>
-            <th scope="col">Price</th>
-            <th scope="col">U$ p/cm²</th>
-            <th scope="col">Price Diff</th>
-        </tr>
-    </thead>
-    `
-    calculateDiff()
-    arrayDiff = ["Best CB"]
+
+    if (arrayName.length <= 0) {
+        alert("Submit at least one Pizza to access the results.")
+    }else{
+        table.innerHTML = `
+        <thead>
+            <tr class="fw-bold">
+                <th scope="col">Name</th>
+                <th scope="col">Pizza Size (cm)</th>
+                <th scope="col">Price</th>
+                <th scope="col">U$ p/cm²</th>
+                <th scope="col">Price Diff</th>
+            </tr>
+        </thead>
+        `
+        calculateDiff()
+        arrayDiff = ["Best CB"]
+    }
 }
 
 // calculate diff between prices in each row
