@@ -9,17 +9,20 @@ body {
     background-color: #FAFAFA;
 }
 
-form {
+.form {
     display: flex;
     flex-direction: column;
-    width: 50vw;
 }
 
-.button-submit {
+.button-submit, .button-results {
     width: 150px;
     align-self: center;
     font-weight: bold;
     font-size: 20px;
+}
+
+.button-results{
+    margin-top: 10px;
 }
 
 .title-page {
@@ -32,6 +35,31 @@ form {
     margin-bottom: 20px;
 }
 
-.form-text{
-   margin-bottom: 20px;
+.form-text {
+    margin-bottom: 20px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+#idNamePizza,
+#idSize,
+#idPrice {
+    padding: 45px 15px 15px 15px;
+    font-size: 20px;
+}
+
+span{
+    font-size: 25px;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 15px;
+    }
+
+    main {
+        margin: 0 10px
+    }
 }

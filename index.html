@@ -19,25 +19,34 @@
 
 <body>
     <main>
-        <form class="form">
+        <form class="form" onsubmit="preventDefault(event)">
             <h2 class="text-center title-page">Cost-Benefit Pizza</h2>
             <img src="./assets/pizza-svgrepo-com.svg" alt="pizza svg img" class="pizza-img">
             <div class="form-floating">
-                <input type="text" class="form-control" id="idNamePizza" placeholder="Commercial Name">
-                <label for="idNamePizza">Commercial Name</label>
+                <input type="text" class="form-control" id="idNamePizza" placeholder="Name" required>
+                <label for="idNamePizza">Name</label>
                 <div id="idNameHelp" class="form-text">small, medium, large, extra-large, etc.</div>
             </div>
             <div class="form-floating">
-                <input type="number" class="form-control" id="idSize" placeholder="Pizza Size">
+                <input type="number" class="form-control" id="idSize" placeholder="Pizza Size" min="0" required>
                 <label for="idSize">Pizza Size</label>
                 <div id="idSizeHelp" class="form-text">diameter in centimeters</div>
             </div>
-            <button type="submit" class="btn btn-primary button-submit">Submit</button>
+            <div class="form-floating">
+                <input type="number" class="form-control" id="idPrice" placeholder="Price" step="0.01" min="0" required>
+                <label for="idPrice">Price</label>
+                <div id="idPriceHelp" class="form-text">USD (dollars)</div>
+            </div>
+            <button type="submit" class="btn btn-primary button-submit" id="idSubmit">Submit</button>
+            <button type="button" class="btn btn-success button-results" id="idButtonResults">Results</button>
+            <button type="button" class="btn btn-danger button-results" id="idButtonClear">Clear</button>
         </form>
+        <table class="table text-center">
+        </table>
     </main>
 
 
-    <script src="main.js"></script>
+    <script src="./main.js"></script>
 </body>
 
 </html>
